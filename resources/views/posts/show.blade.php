@@ -10,5 +10,8 @@
         </div>
     </div>    
     <hr>
-    <a href="{{ route('posts_path') }}" class="btn btn-primary">Back</a>                    
+
+    <small class="pull-right">
+        <a href="{{ route('posts_path') }}" class="btn btn-primary">Back</a>     
+    </small>                  
 @endsection
