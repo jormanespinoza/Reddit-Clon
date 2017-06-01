@@ -1,28 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Title</h2>
-            <p>Posted 5 hours ago.</p>
-        </div>
-    </div> 
+    @foreach($posts as $post)
+        <div class="row">
+            <div class="col-md-12">
+                <h2><a href="{{ route('post_path', ['post' => $post->id]) }}">{{ $post->title }}</a></h2>
+                <p>Posted {{ $post->created_at->diffForHumans() }}</p>
+            </div>
+        </div> 
+        
+        <hr>    
+    @endforeach
     
-    <hr>
+    {{ $posts->render() }}    
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Title</h2>
-            <p>Posted 5 hours ago.</p>
-        </div>
-    </div> 
-    
-    <hr>
-
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Title</h2>
-            <p>Posted 5 hours ago.</p>
-        </div>
-    </div>         
+    <a href="{{ route('create_post_path') }}" class="btn btn-primary pull-right">Add Post</a>
 @endsection
