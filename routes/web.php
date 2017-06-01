@@ -11,14 +11,7 @@
 |
 */
 
-// Public Routes
-
-Route::get('/', 'PostsController@index');
-
-Route::name('posts_path')->get('/posts', 'PostsController@index');
-
-Route::name('post_path')->get('/posts/{post}', 'PostsController@show');
-
+Auth::routes();
 
 // Authenticated Routes
 
@@ -38,7 +31,14 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
-Auth::routes();
+
+// Public Routes
+
+Route::get('/', 'PostsController@index');
+
+Route::name('posts_path')->get('/posts', 'PostsController@index');
+
+Route::name('post_path')->get('/posts/{post}', 'PostsController@show');
 
 
 

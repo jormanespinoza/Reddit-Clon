@@ -36,7 +36,19 @@ class PostsController extends Controller
         |   $post->save();
         */
 
-        $post = Post::create($request->only('title', 'description', 'url'));
+        $post = new Post;
+
+        $post->fill($request->only('title', 'description', 'url'));
+
+        /*     
+        |   $post->user_id = auth()->user()->id;
+        |   $post->title = \Auth::user()->id;
+        |   $post->title = $request->user()->id;
+        */
+
+        $post->user_id = auth()->user()->id;
+
+        $post->save();
 
         session()->flash('message', 'Post Created!');
 
@@ -45,6 +57,10 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
+        if($post->user_id != \Auth::user()->id) {
+            return redirect()->route('posts_path');
+        }
+
         return view('posts.edit')->with(['post' => $post]);
     }
 
@@ -59,6 +75,10 @@ class PostsController extends Controller
 
     public function delete(Post $post)
     {
+
+        if($post->user_id != \Auth::user()->id) {
+            return redirect()->route('posts_path');
+        }
         $post->delete();
 
         session()->flash('message', 'Post Deleted!');
