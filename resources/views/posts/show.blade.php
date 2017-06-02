@@ -8,10 +8,9 @@
             <p><a href="{{ $post->url }}" target="_blank">{{ $post->url }}</a></p>
             <p>Posted {{ $post->created_at->diffForHumans() }}</p>
         </div>
-    </div>    
+    </div>
     <hr>
-
     <small class="pull-right">
-        <a href="{{ route('posts_path') }}" class="btn btn-primary">Back</a>     
+        <a href="{{ route('posts_path') }}" class="btn btn-primary">Back</a>
     </small>                  
 @endsection

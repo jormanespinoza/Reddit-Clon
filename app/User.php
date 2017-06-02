@@ -28,8 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /** 
-     *   Defining Relationship User - Posts
+    /**
+     * Defining Relationship User - Posts
      */
     public function posts()
     {
