@@ -7,19 +7,19 @@
             <div class="col-md-12">
                 <h2>
                     <a href="{{ route('post_path', ['post' => $post->id]) }}">{{ $post->title }}</a>
-                    @if(Auth::user()->id == $post->user_id)
+                   
+                    @if($post->wasCreatedBy(Auth::user()))                        
                         <small class="pull-right">                        
-                        <form action="{{ route('delete_post_path', ['post' => $post->id]) }}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <a href="{{ route('edit_post_path', ['post' => $post->id]) }}" class="btn btn-info">Edit</a>
-                            <button type="submit" class="btn btn-danger">Delete</button>  
-                        </form>                        
-                    </small>          
-                    @endif
-                             
+                            <form action="{{ route('delete_post_path', ['post' => $post->id]) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <a href="{{ route('edit_post_path', ['post' => $post->id]) }}" class="btn btn-info">Edit</a>
+                                <button type="submit" class="btn btn-danger">Delete</button>  
+                            </form>                        
+                        </small>          
+                    @endif                             
                 </h2>
-                <p>Posted {{ $post->created_at->diffForHumans() }}</p>
+                <p>Posted {{ $post->created_at->diffForHumans() }} by <b>{{ $post->user->name }}</b></p>
             </div>
         </div>         
         <hr>    
